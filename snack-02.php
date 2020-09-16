@@ -1,29 +1,38 @@
-<!-- Snack 2
-Passare come parametri GET name, mail ed age e verificare (cercando i metodi che non conosciamo nella documentazione) che name sia più lungo di 3 caratteri, che mail contenga un punto e una chiocciola e che age sia un numero. Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato” -->
+<!--
+PHP Snack 2:
+Passare come parametri GET name, mail e age e
+verificare (cercando i metodi che non
+conosciamo nella documentazione) che:
+1. name sia più lungo di 3 caratteri,
+2. che mail contenga un punto e una chiocciola
+3. e che age sia un numero.
+Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato”
+
+ -->
 
 <?php
     $name = $_GET['name'];
     $mail = $_GET['mail'];
     $age = $_GET['age'];
 
-    $risultato ='';
+    $risultato ='Accesso negato! ';
     if (strlen($name)>2) {
         if (strpos($mail, '@')!==false) {
             if (strpos(substr($mail, strpos($mail, '@')+1), '.')) {
                 if (intval($age)>0) {
-                    $risultato .= 'Accesso riuscito';
+                    $risultato = 'Accesso riuscito';
                 } else {
-                    $risultato .= 'Accesso negato! La tua età deve essere un numero maggiore di 0';
+                    $risultato .= 'La tua età deve essere un numero maggiore di 0';
                 }
             } else {
-                $risultato .= 'Accesso negato! La mail deve contenere un . dopo la @';
+                $risultato .= 'La mail deve contenere un . dopo la @';
             }
         }
          else {
-             $risultato .= 'Accesso negato! La mail deve contenere la @';
+             $risultato .= 'La mail deve contenere la @';
         }
     } else {
-        $risultato .= 'Accesso negato! Il nome deve essere almeno di 3 caratteri';
+        $risultato .= 'Il nome deve essere almeno di 3 caratteri';
     }
 
  ?>
